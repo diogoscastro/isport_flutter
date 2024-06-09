@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/noticia.dart';
 
 class ApiService {
-  final String apiUrl = 'https://localhost:7135/swagger/v1/swagger.json';
+  final String apiUrl = 'https://localhost:7135/api/News';
 
   Future<List<Noticia>> fetchNoticias(String categoria) async {
     final response = await http.get(Uri.parse('$apiUrl?categoria=$categoria'));

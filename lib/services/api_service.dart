@@ -3,19 +3,16 @@ import 'package:http/http.dart' as http;
 import '../models/noticia.dart';
 
 class ApiService {
-  static const String _apiKey = 'SUA_CHAVE_API';
-  static const String _baseUrl = 'https://newsapi.org/v2';
+  final String apiUrl = 'https://localhost:7135/swagger/v1/swagger.json';
 
-  Future<List<Noticia>> fetchNoticias(String team) async {
-    final response = await http.get(
-      Uri.parse('$_baseUrl/everything?q=$team&apiKey=$_apiKey'),
-    );
+  Future<List<Noticia>> fetchNoticias(String categoria) async {
+    final response = await http.get(Uri.parse('$apiUrl?categoria=$categoria'));
 
     if (response.statusCode == 200) {
-      final List<dynamic> noticiasJson = json.decode(response.body)['articles'];
-      return noticiasJson.map((json) => Noticia.fromJson(json)).toList();
+      List<dynamic> jsonResponse = json.decode(response.body);
+      return jsonResponse.map((json) => Noticia.fromJson(json)).toList();
     } else {
-      throw Exception('Falha ao carregar notícias');
+      throw Exception('Falha ao carregar as notícias');
     }
   }
 }

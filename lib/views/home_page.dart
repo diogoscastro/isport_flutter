@@ -46,10 +46,28 @@ class HomePageState extends State<HomePage> {
                     ? Image.network(noticia.urlImagem!)
                     : null, // Permitir nulo
                 title: Text(noticia.titulo),
-                subtitle: Text(noticia.descricao),
-                onTap: () {
-                  _abrirNoticia(noticia.url);
-                },
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(noticia.descricao),
+                    Text('Fonte: ${noticia.fonte}'),
+                    Text(
+                        'Data: ${noticia.data.toLocal().toString().split(' ')[0]}'),
+                    Row(
+                      children: [
+                        noticia.time.urlImagem != null
+                            ? Image.network(noticia.time.urlImagem!,
+                                width: 20, height: 20)
+                            : const SizedBox.shrink(),
+                        const SizedBox(width: 5),
+                        Text(noticia.time.nome),
+                      ],
+                    ),
+                  ],
+                ),
+                onTap: noticia.url != null
+                    ? () => _abrirNoticia(noticia.url!)
+                    : null, // Adicionado verificação de null
               );
             },
           );

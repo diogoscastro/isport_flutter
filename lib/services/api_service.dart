@@ -6,7 +6,7 @@ class ApiService {
   final String apiUrl = 'https://localhost:7135/api/News';
 
   Future<List<Noticia>> fetchNoticias(String categoria) async {
-    final response = await http.get(Uri.parse('$apiUrl?categoria=$categoria'));
+    final response = await http.get(Uri.parse('$apiUrl'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonResponse = json.decode(response.body);

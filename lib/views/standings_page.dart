@@ -15,32 +15,68 @@ class StandingsPage extends StatelessWidget {
       // Adicione mais times conforme necessário
     ];
 
-    return ListView.builder(
-      itemCount: standings.length,
-      itemBuilder: (context, index) {
-        final team = standings[index];
-        return ListTile(
-          leading: CircleAvatar(
-            child: Text('${index + 1}'),
-          ),
-          title: Text(team['team'] as String),
-          subtitle: Row(
-            children: [
-              Expanded(
-                child: Text('Pontos: ${team['points']}'),
-              ),
-              Expanded(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Classificação'),
+      ),
+      body: Container(
+        color: Colors.blueGrey[50], // Cor de fundo alterada
+        child: ListView.builder(
+          itemCount: standings.length,
+          itemBuilder: (context, index) {
+            final team = standings[index];
+            return Card(
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Vitórias: ${team['wins']}'),
-                    Text('Derrotas: ${team['losses']}'),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          child: Text('${index + 1}'),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          team['team'] as String,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Pontos: ${team['points']}',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Vitórias: ${team['wins']}',
+                              style: TextStyle(color: Colors.grey[700]),
+                            ),
+                            Text(
+                              'Derrotas: ${team['losses']}',
+                              style: TextStyle(color: Colors.grey[700]),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-            ],
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }

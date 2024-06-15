@@ -19,12 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Notícias de Futebol',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        // Defina a cor dos ícones não selecionados na barra de navegação inferior
-        // e o tamanho dos ícones não selecionados
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          unselectedItemColor: Colors.grey, // Cor dos ícones não selecionados
-          unselectedIconTheme:
-              IconThemeData(size: 24), // Tamanho dos ícones não selecionados
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          unselectedItemColor: Colors.grey,
+          unselectedIconTheme: IconThemeData(size: 24),
         ),
       ),
       home: const MainPage(),
@@ -42,11 +39,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    ResultsPage(),
-    StandingsPage(),
-    PlayerProfilePage(
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePage(),
+    const ResultsPage(),
+    const StandingsPage(),
+    const PlayerProfilePage(
       playerName: 'Cristiano Ronaldo',
       playerImage:
           'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg',

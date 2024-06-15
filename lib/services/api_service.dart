@@ -5,7 +5,7 @@ import '../models/game.dart';
 
 class ApiService {
   final String apiUrlNews = 'https://localhost:7135/api/News';
-  final String apiUrlGames = 'https://localhost:7135/api/Games';
+  final String apiUrlGames = 'https://localhost:7135/api/Games/games';
 
   Future<List<Noticia>> fetchNoticias(String categoria) async {
     final response = await http.get(Uri.parse('$apiUrlNews'));
